@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Matras from "../../assets/images/matrascha.svg"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import Modal from "../modals/Modal";
 
 const Box = ({
   weight,
@@ -15,11 +16,15 @@ const Box = ({
 }) => {
   const [item, setItem] = useState("");
 
+
+  const [showContent, setShowContent] = useState(false)
+
   return (
+   <>
     <div className="mb-10">
       <div className="flex bg-slate-300  border-4 border-blue-300 py-6">
         <div className="w-[50%] relative">
-          <img className="mt-20 ml-10" src={Matras} alt="images" />
+          <img className="mt-20 ml-10 " src={Matras} alt="images" />
           <h1 className="absolute px-3 py-2 bg-pink-500 text-white rounded text-[14px] left-6 top-1">
               YANGI MAXSULOT
             </h1>
@@ -64,13 +69,17 @@ const Box = ({
             <h1 className="text-[30px] text-[#01384D] font-[700]">{cost}</h1>
           </div>
           <div>
-            <button className="px-4 py-2 border-2 border-blue-500 rounded bg-white font-bold items-center">
+            <button className="px-4 py-2 border-2 border-blue-500 rounded bg-white font-bold items-center" onClick={() =>setShowContent(true)}>
               Buyurtma berish <FontAwesomeIcon icon={faCartShopping} />{" "}
             </button>
           </div>
         </div>
       </div>
     </div>
+    {
+      showContent && <Modal setShowContent={setShowContent}/>
+    }
+   </>
   );
 };
 

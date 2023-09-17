@@ -10,7 +10,7 @@ import Modal from '../modals/Modal'
 
 const Header = () => {
 
-  const {showContent , setShowContent} = useState(true)
+  
   return (
   <>
     <div className='bg-[#EABF9F]'>
@@ -24,9 +24,7 @@ const Header = () => {
         <Hero/>
       </div>
     </div>
-    {
-      showContent && <Modal showContent={showContent}/>
-    }
+   
   </>
   )
 }

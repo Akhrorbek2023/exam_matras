@@ -28,7 +28,7 @@ const Form = () => {
               <form onSubmit={handleSubmit}>
                 <label className="bg-white py-4 mr-2  pl-4 border-2 border-blue-500 rounded" htmlFor="number">
                   +998
-                  <input ref={inputVal} className="ml-2 text-[18px] border-s-2 pl-2 ring-0 outline-none"
+                  <input ref={inputVal} required className="ml-2 text-[18px] border-s-2 pl-2 ring-0 outline-none"
                     
                     type="number"
                     id="number"

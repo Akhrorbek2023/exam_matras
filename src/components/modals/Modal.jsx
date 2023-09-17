@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useFetch } from "../hooks/Fetch";
 import Backdrop from '../../assets/images/modalImage.svg'
 
-const Modal = ({showContent}) => {
+const Modal = ({setShowContent}) => {
   const url = "http://localhost:1212/api/products";
 
   const { data, isPending, error } = useFetch(url);
@@ -33,10 +33,10 @@ const Modal = ({showContent}) => {
   }
 
   return (
-    <div>
+    <div className="z-50">
       <div className="w-[100%] h-[100%] fixed bg-[rgba(0,0,0,0.5)] right-0 left-0 top-0 py-[80px]">
-        <div className="rounded w-[500px] h-[600px] mx-auto bg-blue-gray-200 box-border">
-          <button className="pt-5 pl-5 text-[20px] text-red-600 font-bold" onClick={()=>handleExit()}>X</button>
+        <div className="rounded w-[500px] h-[600px] mx-auto bg-blue-gray-200 box-border z-50">
+          <button className="pt-5 pl-5 text-[20px] text-red-600 font-bold" onClick={()=>setShowContent(false)}>X</button>
          { !isSend ?
             <div className="px-6 py-6">
             <h1 className="text-[40px] font-[700] text-[#01384D] text-center mb-6">
@@ -44,6 +44,7 @@ const Modal = ({showContent}) => {
             </h1>
             <form onSubmit={handleSubmit}>
               <input
+               required
                 className="block w-[100%] px-4 py-3 rounded mb-6"
                 type="text"
                 placeholder="Ismingizni yozing"
@@ -56,6 +57,7 @@ const Modal = ({showContent}) => {
                   +998
                 </label>
                 <input
+                  required
                   className="w-[88%] outline-none ring-0 py-3 px-3 text-black rounded-e"
                   type="number"
                   id="num"
@@ -120,7 +122,7 @@ const Modal = ({showContent}) => {
                 className="ms-0 px-6 py-3 border-2 ml-6
                  border-[#01384D] rounded  
                   font-bold mb-10 text-[white] 
-                 bg-[#01384D] transition-all w-[100%]" onClick={()=>handleExit()}
+                 bg-[#01384D] transition-all w-[100%]" onClick={()=>setShowContent(false)}
               >
                 OK
               </button>

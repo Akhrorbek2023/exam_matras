@@ -24,6 +24,8 @@ const Models = () => {
 
   const [page, setPage] = useState([]);
 
+  const [focus, setFocus] = useState(false)
+
   console.log(data);
 
   const handleSubmit = (e) => {
@@ -39,6 +41,7 @@ const Models = () => {
         }
       }
       setPage(items);
+      setFocus(true)
     }
   };
 
@@ -63,7 +66,7 @@ const Models = () => {
             <button
               onClick={() => handleBtn(item.category)}
               className={
-                page
+                {page}
                   ? "focus:font-[700] focus:border-b-4 border-stone-900 mr-[35px] px-3 py-3 rounded hover:bg-slate-300 box-border "
                   : "mr-[35px] px-3 py-3 rounded hover:bg-slate-300 box-border"
               }
@@ -76,9 +79,10 @@ const Models = () => {
       </div>
       <div className="border-solid border-b-4 mt-[-4px] mb-[30px]"></div>
       <div className="container">
-        {page?.map((page) =>
-          page.new_cost == null ? (
-            <Box key={page.id}
+       {
+         page?.map((page)=>(
+          !page.new_cost &&
+          <Box key={page.id}
               weight={page.weight}
               warranty={page.warranty}
               size={page.size}
@@ -88,9 +92,13 @@ const Models = () => {
               images={page.product_images}
               new_cost={page.new_cost}
             />
-          ) : (
-            <BoxA
-             key={page.id}
+        ))
+       }
+
+       {
+        page?.map((page)=>(
+          page.new_cost &&
+          <BoxA key={page.id}
               weight={page.weight}
               warranty={page.warranty}
               size={page.size}
@@ -100,10 +108,8 @@ const Models = () => {
               images={page.product_images}
               new_cost={page.new_cost}
             />
-          )
-        )}
-        
-        {}
+        ))
+       }
       </div>
     </>
   );
